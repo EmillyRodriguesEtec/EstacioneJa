@@ -1,8 +1,13 @@
 package br.com.etechoracio.EstacioneJa.Entity;
 
+import br.com.etechoracio.EstacioneJa.enums.PagamentoEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -12,10 +17,10 @@ public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pagamento")
-    private Long id;
+    private BigInteger id;
 
     @Column(name = "data_pagamento")
-    private String data;
+    private LocalDate data;
 
     @Column(name = "emissor_pagamento")
     private String emissor;
@@ -23,6 +28,7 @@ public class Pagamento {
     @Column(name = "receptor_pagamento")
     private String receptor;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "forma_pagamento")
-    private String formaPagamento;
+    private PagamentoEnum formaPagamento;
 }
