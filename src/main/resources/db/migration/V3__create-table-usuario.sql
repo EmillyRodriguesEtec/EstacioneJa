@@ -8,6 +8,6 @@ create table usuario (
         nome_usuario varchar(60) constraint usuario_nome_nn not null,
         latitude varchar(40) constraint usuario_latitude_nn not null,
         longitude varchar(40) constraint usuario_longitude_nn not null,
-        preferencia_vaga numeric(2) constraint usuario_preferencia_nn not null,
+        preferencia_vaga smallint constraint usuario_preferencia_nn not null,
         tipo_usuario varchar(20) constraint usuario_tipo_nn not null
 );

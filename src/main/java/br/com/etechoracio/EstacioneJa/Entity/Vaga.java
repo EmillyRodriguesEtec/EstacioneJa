@@ -1,21 +1,13 @@
 package br.com.etechoracio.EstacioneJa.Entity;
 
+import br.com.etechoracio.EstacioneJa.enums.DisponibilidadeEnum;
+import br.com.etechoracio.EstacioneJa.enums.PreferenciaEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigInteger;
 
-/*id_vaga numeric(6) constraint vagaid_pk primary key,
-        latitude varchar(40) constraint vaga_latitude_nn not null,
-        longitude varchar(40) constraint vaga_longitude_nn not null,
-        secao_vaga varchar(10) constraint vaga_secao_nn not null,
-        disponibilidade_vaga numeric(2) constraint vaga_disponibilidade_nn not null,
-        andar_vaga numeric(6) constraint vaga_andar_nn not null,
-        numero_vaga numeric(6) constraint vaga_numero_nn not null,
-        preferencial_vaga numeric(2) constraint vaga_preferencia_nn not null,
-        id_sensor numeric(6) constraint vaga_sensor_fk references sensor,
-        id_estacionamento numeric(6) constraint vaga_estacionamento_fk references estacionamento*/
 @Entity
 @Getter
 @Setter
@@ -27,25 +19,34 @@ public class Vaga {
     @Column(name = "id_vaga")
     private BigInteger id;
 
-    @Column(name = "latitude_vaga")
+    @Column(name = "latitude")
     private String latitude;
 
-    @Column(name = "longitude_vaga")
+    @Column(name = "longitude")
     private String longitude;
 
     @Column(name = "secao_vaga")
     private String secao;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "disponibilidade_vaga")
-    private boolean disponibilidade;
+    private DisponibilidadeEnum disponibilidade;
 
     @Column(name = "andar_vaga")
-    private int andar;
+    private BigInteger andar;
 
     @Column(name = "numero_vaga")
-    private int numero;
+    private BigInteger numero;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "preferencial_vaga")
-    private String preferencial;
+    private PreferenciaEnum preferencial;
 
+    @JoinColumn(name = "id_sensor")
+    @OneToOne
+    private Sensor sensor;
+
+    @JoinColumn(name = "id_estacionamento")
+    @ManyToOne
+    private Estacionamento estacionamento;
 }

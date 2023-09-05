@@ -9,9 +9,9 @@ import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.Date;
 
-@Entity
 @Getter
 @Setter
+@Entity
 @Table(name = "pagamento")
 public class Pagamento {
     @Id
